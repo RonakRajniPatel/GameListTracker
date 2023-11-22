@@ -14,17 +14,6 @@ export const metadata = {
   title: 'Next.js and Supabase Starter Kit',
   description: 'The fastest way to build apps with Next.js and Supabase',
 }
-const cookieStore = cookies()
-const canInitSupabaseClient = () => {
-  // This function is just for the interactive tutorial.
-  // Feel free to remove it once you have Supabase connected.
-  try {
-    createClient(cookieStore)
-    return true
-  } catch (e) {
-    return false
-  }
-}
 
 export default async function RootLayout({
   
