@@ -15,7 +15,7 @@ export default async function Page() {
 
   return (
     <>
-    <div className='w-full'>
+    <div className='w-full px-2 flex-auto'>
       {<NewNote />}
       {<DisplayNote />}
     </div>
