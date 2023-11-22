@@ -7,5 +7,5 @@ export default async function Unauthenticated() {
     const supabase = createClient(cookieStore)
     const { data: {session} } = await supabase.auth.getSession()
     
-    return <p>Please login to see notes</p>
+    return <p>Please login to view this content</p>
 }

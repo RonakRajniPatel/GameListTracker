@@ -1,7 +1,7 @@
 import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 import AuthButton from '@/components/AuthButton'
-import DeployButton from '@/components/DeployButton'
+import NavLinks from '@/components/NavLinks'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 
@@ -38,8 +38,10 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-            <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-              {<DeployButton />}
+            <div className="w-full max-w-4xl flex justify-left items-center p-3 text-sm">
+              {<NavLinks />}
+            </div>
+            <div>
               {isSupabaseConnected && <AuthButton />}
             </div>
           </nav>

@@ -7,9 +7,9 @@ export default async function Page() {
   const supabase = createClient(cookieStore)
   const { data: notes } = await supabase.from('notes').select()
   const { data: {session}} = await supabase.auth.getSession()
-  
+
   if (!session) {
-    redirect("/login")
+    redirect("/unauthenticated")
   }
 
   return <pre>{JSON.stringify(notes, null, 2)}</pre>
