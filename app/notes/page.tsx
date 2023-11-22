@@ -15,8 +15,10 @@ export default async function Page() {
 
   return (
     <>
+    <div className='w-full'>
       {<NewNote />}
       {<DisplayNote />}
+    </div>
     </>
   )
 }
