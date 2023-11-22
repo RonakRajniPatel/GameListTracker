@@ -26,13 +26,26 @@ const canInitSupabaseClient = () => {
   }
 }
 
-const isSupabaseConnected = canInitSupabaseClient()
-export default function RootLayout({
+export default async function RootLayout({
   
   children,
 }: {
   children: React.ReactNode
 }) {
+  const cookieStore = cookies()
+  const canInitSupabaseClient = () => {
+    // This function is just for the interactive tutorial.
+    // Feel free to remove it once you have Supabase connected.
+    try {
+      createClient(cookieStore)
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
+  const isSupabaseConnected = canInitSupabaseClient()
+
   return (
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
