@@ -39,12 +39,10 @@ export default async function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-            <div className="w-full max-w-4xl flex justify-left items-center p-3 text-sm">
+          <nav className="w-full flex justify-between border-b border-b-foreground/10 h-16">
+            <div className="w-full justify-normal flex items-center p-3 text-sm">
               {<NavLinks />}
-            </div>
-            <div>
-              {isSupabaseConnected && <AuthButton />}
+              <div className="flex-auto flex place-content-end">{isSupabaseConnected && <AuthButton />}</div>
             </div>
           </nav>
           {children}
