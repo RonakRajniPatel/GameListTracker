@@ -3,8 +3,11 @@ import { NextResponse } from "next/server";
 const clientId = process.env.IGDB_CLIENT_ID;
 const Bearer = process.env.IGDB_BEARER;
 
-export async function GET() {
-    let data = null
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url)
+    const search = searchParams.get('search')
+
+    let data
     await fetch("https://api.igdb.com/v4/games", {
         method: 'POST',
         headers: {
@@ -12,7 +15,7 @@ export async function GET() {
             'Client-ID': `${clientId!}`,
             'Authorization': `Bearer ${Bearer!}`,
         },
-        body: "fields name;"
+        body: `fields name; search \"${search}\";`
     })
         .then(response => response.json())
         .then(response => data = response)
