@@ -8,7 +8,7 @@ export default function Page() {
     return (
         <>
             <div>
-                {<SearchGame placeholder={"Search Games"}/>}
+                <h1>MOVED TO NAVBAR</h1>
             </div>
         </>
     )
