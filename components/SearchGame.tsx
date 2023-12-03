@@ -10,7 +10,7 @@ type Props = {
 export default function SearchGame({ placeholder }: Props) {
 
     const handleSearch = useDebouncedCallback((term: string) => {
-        fetch(`http://localhost:3000/api/game`)
+        fetch(`http://localhost:3000/api/game?search=${term}`)
         .then(response => response.json())
         .then(data => {
           console.log(data)
