@@ -21,6 +21,5 @@ export async function GET(request: Request) {
         .then(response => response.json())
         .then(response => data = response)
         .catch(err => console.error(err));
-
     return NextResponse.json(data)
 }
