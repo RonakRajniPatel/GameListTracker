@@ -39,9 +39,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={GeistSans.className}>
-      <body className="bg-primary-content text-foreground">
+      <body className="text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-          <div className="navbar bg-base-100">
+          <div className="navbar bg-neutral">
             <div className="flex-1">
               <Link href="/" className="btn btn-ghost text-xl">GameTracker</Link>
               <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
