@@ -21,7 +21,7 @@ export default async function NewNote() {
 
     return (
         <form action={addNote}>
-            <input name="title" className='bg-gray-800'/>
+            <input name="title" className='input input-bordered w-full max-w-xs'/>
         </form>
     )
 }

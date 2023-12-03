@@ -1,5 +1,5 @@
-import DisplayNote from '@/components/display-notes'
-import NewNote from '@/components/new-note'
+import DisplayNote from '@/components/DisplayNote'
+import NewNote from '@/components/NewNote'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'

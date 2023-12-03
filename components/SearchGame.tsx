@@ -1,7 +1,6 @@
 
 'use client';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {
@@ -27,13 +26,12 @@ export default function SearchGame({ placeholder }: Props) {
                 Search
             </label>
             <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-black text-black"
+                className="input input-bordered w-36 md:w-auto"
                 placeholder={placeholder}
                 onChange={(e) => {
-                handleSearch(e.target.value);
+                    handleSearch(e.target.value);
                 }}
             />
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
         </div>
     )
 }

@@ -13,7 +13,7 @@ export default async function DeleteNote({ note }: {note:Note}) {
 
 
 
-    const deleteNote = async () => {
+    const DeleteNote = async () => {
         'use server'
         const cookieStore = cookies()
         
@@ -25,7 +25,7 @@ export default async function DeleteNote({ note }: {note:Note}) {
     }
 
     return (
-        <form action={deleteNote}>
+        <form action={DeleteNote}>
             <button>Delete</button>
         </form>
     )

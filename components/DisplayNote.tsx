@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
-import DeleteNote from './delete-note'
+import DeleteNote from './DeleteNote'
 
 export default async function DisplayNote() {
 	const cookieStore = cookies()

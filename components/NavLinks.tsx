@@ -21,9 +21,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-                "py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover",
+                "btn btn-default btn-sm",
               {
-                'bg-button-background text-blue-600': pathname === link.href,
+                'btn btn-active btn-primary': pathname === link.href,
               },
               )}
             >
