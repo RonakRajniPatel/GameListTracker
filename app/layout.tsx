@@ -5,6 +5,7 @@ import NavLinks from '@/components/NavLinks'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
+import SearchGame from '@/components/SearchGame'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -40,13 +41,6 @@ export default async function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-primary-content text-foreground">
         <main className="min-h-screen flex flex-col items-center">
-
-          {/* <nav className="w-full flex justify-between border-b border-b-foreground/10 h-16">
-            <div className="w-full justify-normal flex items-center p-3 text-sm">
-              {<NavLinks />}
-              <div className="flex-auto flex place-content-end">{isSupabaseConnected && <AuthButton />}</div>
-            </div>
-          </nav> */}
           <div className="navbar bg-base-100">
             <div className="flex-1">
               <Link href="/" className="btn btn-ghost text-xl">GameTracker</Link>
@@ -56,7 +50,7 @@ export default async function RootLayout({
             </div>
             <div className="flex-none gap-2">
               <div className="form-control">
-                <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                {<SearchGame placeholder={"Search Games"}/>}
               </div>
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -67,7 +61,7 @@ export default async function RootLayout({
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                   <li>Profile</li>
                   <li>Settings</li>
-                  <li>{isSupabaseConnected && <AuthButton />}</li>
+                  {isSupabaseConnected && <AuthButton />}
                 </ul>
               </div>
             </div>

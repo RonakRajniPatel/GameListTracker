@@ -21,19 +21,21 @@ export default async function AuthButton() {
   }
 
   return user ? (
-    <div className="flex items-center gap-4">
+    <>
       <form action={signOut}>
-        <button className="btn no-animation btn-xs btn-ghost">
-          Logout
+        <button>
+          <li>
+            Logout
+          </li>
         </button>
       </form>
-    </div>
+    </>
   ) : (
-    <Link
-      href="/login"
-      className="link link-hover"
-    >
-      Login
-    </Link>
+    <li>
+      <Link href="/login">
+        Login
+      </Link>
+    </li>
+    
   )
 }
