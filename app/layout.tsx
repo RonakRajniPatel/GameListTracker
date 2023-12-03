@@ -43,10 +43,16 @@ export default async function RootLayout({
         <main className="min-h-screen flex flex-col items-center">
           <div className="navbar bg-neutral">
             <div className="flex-1">
-              <Link href="/" className="btn btn-ghost text-xl">GameTracker</Link>
-              <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+              <Link href="/" className="hidden md:btn md:btn-ghost md:text-xl">GameTracker</Link>
+              <ul className='hidden md:menu-horizontal md:bg-base-200 md:rounded-box'>
                 {<NavLinks />}
               </ul>
+              <div className='dropdown dropdown-end md:invisible'>
+                <div tabIndex={0} role='button' className='btn btn-ghost rounded-btn'>Menu</div>
+                  <ul tabIndex={0} className="menu dropdown-content z-[1]">
+                  {<NavLinks />}
+                </ul>
+              </div>  
             </div>
             <div className="flex-none gap-2">
               <div className="form-control">
