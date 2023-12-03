@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
 const links = [
-    { name: 'Home', href: '/'},
     { name: 'Notes', href: '/notes'},
     { name: 'Games', href: '/game'},
 ];
@@ -17,18 +16,20 @@ export default function NavLinks() {
         <>
 {links.map((link) => {
         return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-                "btn btn-default btn-sm",
-              {
-                'btn btn-active btn-primary': pathname === link.href,
-              },
-              )}
-            >
-            <p className="md:block">{link.name}</p>
-          </Link>
+          <li>
+            <Link
+              key={link.name}
+              href={link.href}
+              className={clsx(
+                  "btn btn-default btn-sm",
+                {
+                  'btn btn-active btn-primary': pathname === link.href,
+                },
+                )}
+              >
+              <p className="md:block">{link.name}</p>
+            </Link>
+          </li>
         );
       })}
         </>
