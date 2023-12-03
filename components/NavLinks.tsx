@@ -7,6 +7,7 @@ import clsx from 'clsx'
 const links = [
     { name: 'Home', href: '/'},
     { name: 'Notes', href: '/notes'},
+    { name: 'Games', href: '/game'},
 ];
 
 export default function NavLinks() {
