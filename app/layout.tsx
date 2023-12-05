@@ -25,8 +25,7 @@ export default async function RootLayout({
 }) {
   const cookieStore = cookies()
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
+
     try {
       createClient(cookieStore)
       return true
@@ -43,16 +42,21 @@ export default async function RootLayout({
         <main className="min-h-screen flex flex-col items-center">
           <div className="navbar bg-neutral">
             <div className="flex-1">
+
+              {/* Monitor UI */}
               <Link href="/" className="hidden md:btn md:btn-ghost md:text-xl">GameTracker</Link>
               <ul className='hidden md:menu-horizontal md:bg-base-200 md:rounded-box'>
                 {<NavLinks />}
               </ul>
+
+              {/* Mobile UI */}
               <div className='dropdown dropdown-end md:invisible'>
                 <div tabIndex={0} role='button' className='btn btn-ghost rounded-btn'>Menu</div>
                   <ul tabIndex={0} className="menu dropdown-content z-[1]">
                   {<NavLinks />}
                 </ul>
               </div>  
+
             </div>
             <div className="flex-none gap-2">
               <div className="form-control">
