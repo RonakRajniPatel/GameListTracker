@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
 
-const clientId = process.env.IGDB_CLIENT_ID;
-const Bearer = process.env.IGDB_BEARER;
+const clientId = process.env.IGDB_CLIENT_ID
+const Bearer = process.env.IGDB_BEARER
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)

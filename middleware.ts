@@ -1,7 +1,26 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createClient } from '@/utils/supabase/middleware'
 
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://game-list-tracker.vercel.app/']
+  : ['http://localhost:3000']
+
 export async function middleware(request: NextRequest) {
+
+  // DAVE GRAY MIDDLEWARE TUTORIAL
+  const origin = request.headers.get('origin')
+  console.log(origin)
+
+  if (origin && !allowedOrigins.includes('origin')) {
+    return new NextResponse(null, {
+      status: 400,
+      statusText: "Bad Request",
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    })
+  }
+
   try {
     // This `try/catch` block is only here for the interactive tutorial.
     // Feel free to remove once you have Supabase connected.
