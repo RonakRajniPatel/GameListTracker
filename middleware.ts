@@ -1,9 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createClient } from '@/utils/supabase/middleware'
 
-const allowedOrigins = process.env.NODE_ENV === 'production'
-  ? ['https://game-list-tracker.vercel.app/']
-  : ['http://localhost:3000']
+const allowedOrigins = process.env.NEXT_PUBLIC_API_URL
 
 export async function middleware(request: NextRequest) {
 
@@ -11,7 +9,7 @@ export async function middleware(request: NextRequest) {
   const origin = request.headers.get('origin')
   console.log(origin)
 
-  if (origin && !allowedOrigins.includes('origin')) {
+  if (origin && !allowedOrigins?.includes('origin')) {
     return new NextResponse(null, {
       status: 400,
       statusText: "Bad Request",
@@ -41,4 +39,8 @@ export async function middleware(request: NextRequest) {
       },
     })
   }
+}
+
+export const config = {
+  matcher: '/api/:path*',
 }

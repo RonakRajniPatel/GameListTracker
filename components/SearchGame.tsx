@@ -27,7 +27,7 @@ export default function SearchGame({ placeholder }: Props) {
             return;
         }
 
-        fetch(`http://localhost:3000/api/game?search=${term}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/game?search=${term}`)
         .then(response => response.json())
         .then(data => {
           console.log(data)
