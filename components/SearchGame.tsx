@@ -39,7 +39,7 @@ export default function SearchGame({ placeholder }: Props) {
             setShowResults(false)
         })
 
-    }, 500);
+    }, 200);
 
  
     return (
