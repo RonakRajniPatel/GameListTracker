@@ -7,7 +7,6 @@ export async function middleware(request: NextRequest) {
 
   // DAVE GRAY MIDDLEWARE TUTORIAL
   const origin = request.headers.get('origin')
-  console.log(origin)
 
   if (origin && !allowedOrigins?.includes(origin)) {
     return new NextResponse(null, {

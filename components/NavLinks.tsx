@@ -17,9 +17,8 @@ export default function NavLinks() {
         <>
 {links.map((link) => {
         return (
-          <li>
+          <li key={link.name}>
             <Link
-              key={link.name}
               href={link.href}
               className={clsx({'md:hidden': link.mobileOnly},
                   "btn btn-default btn-sm",
@@ -27,8 +26,8 @@ export default function NavLinks() {
                   'btn btn-active btn-primary': pathname === link.href,
                 },
                 )}
-              >
-              <p className="md:block">{link.name}</p>
+            >
+                <p className="md:block">{link.name}</p>
             </Link>
           </li>
         );
