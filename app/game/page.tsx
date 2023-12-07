@@ -3,12 +3,11 @@ import { NodeNextRequest } from "next/dist/server/base-http/node"
 import React from "react"
 
 export default function Page() {
-    let query = null
 
     return (
         <>
             <div>
-                <div className="hero min-h-screen absolute left-16 top-0 h-16 w-3/4">
+                <div className="hero relative left-2 top-0 h-16 w-3/4">
                     <div className="hero-content flex-col lg:flex-row">
                         <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg" className="max-w-sm rounded-lg shadow-2xl" />
                         <div>

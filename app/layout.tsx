@@ -49,7 +49,7 @@ export default async function RootLayout({
                 {<NavLinks />}
               </ul>
 
-              {/* Mobile UI */}
+              {/* Mobile UI switch this to bottom row at some point*/}
               <div className='dropdown dropdown-end md:invisible'>
                 <div tabIndex={0} role='button' className='btn btn-ghost rounded-btn'>Menu</div>
                   <ul tabIndex={0} className="menu dropdown-content z-[1]">

@@ -3,6 +3,7 @@
 
 import { useDebouncedCallback } from 'use-debounce';
 import { useState } from 'react';
+import Link from 'next/link';
 
 type Props = {
     placeholder: string
@@ -73,9 +74,11 @@ export default function SearchGame({ placeholder }: Props) {
                 // <div className="absolute z-10 w-full bg-base-200 rounded-box shadow-lg mt-1">
                     <ul tabIndex={0} className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box absolute menu">
                         {searchResults.map((result, index) => (
-                            <li key={index} className="hover:bg-base-300">
-                                {result.name}
-                            </li>
+                            // <Link href={'/game'}>
+                                <li key={index} className="hover:bg-base-300">
+                                    {result.name}
+                                </li>
+                            // </Link>
                         ))}
                     </ul>
                 // </div>
