@@ -3,11 +3,15 @@ import ShowGame from "@/components/ShowGame"
 import { NodeNextRequest } from "next/dist/server/base-http/node"
 import React from "react"
 
-export default function Page() {
+type Props = {
+    gameid: string
+}
 
+export default function Page({ gameid }: Props) {
+    console.log(gameid)
     return (
         <>
-            <ShowGame gameid="00001"/>
+            <ShowGame gameid={gameid}/>
         </>
     )
 }

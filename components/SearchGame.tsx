@@ -31,7 +31,6 @@ export default function SearchGame({ placeholder }: Props) {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/game?search=${term}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           setSearchResults(data)
           setShowResults(true)
         })
@@ -71,17 +70,15 @@ export default function SearchGame({ placeholder }: Props) {
             />
 
             {showResults && searchResults.length > 0 && (
-                // <div className="absolute z-10 w-full bg-base-200 rounded-box shadow-lg mt-1">
-                    <ul tabIndex={0} className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box absolute menu">
-                        {searchResults.map((result, index) => (
-                            // <Link href={'/game'}>
-                                <li key={index} className="hover:bg-base-300">
-                                    {result.name}
-                                </li>
-                            // </Link>
-                        ))}
-                    </ul>
-                // </div>
+                <ul tabIndex={0} className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box absolute menu">
+                    {searchResults.map((result, index) => (
+                        <Link key={result.id} href={`/game/${result.id}`}>
+                            <li className="hover:bg-base-300">
+                                {result.name}
+                            </li>
+                        </Link>
+                    ))}
+                </ul>
             )}
 
         </div>

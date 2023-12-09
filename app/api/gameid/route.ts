@@ -6,17 +6,17 @@ const Bearer = process.env.IGDB_BEARER
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     
-    const search = searchParams.get('search')
+    const gameid = searchParams.get('gameid')
 
     let data
-    await fetch("https://api.igdb.com/v4/games", {
+    await fetch("https://api.igdb.com/v4/covers", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Client-ID': `${clientId!}`,
             'Authorization': `Bearer ${Bearer!}`,
         },
-        body: `fields name, rating, cover; search \"${search}\"; limit 5;`
+        body: `fields image_id; where game=${gameid};`
     })
         .then(response => response.json())
         .then(response => data = response)
