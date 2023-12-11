@@ -72,7 +72,7 @@ export default function SearchGame({ placeholder }: Props) {
             {showResults && searchResults.length > 0 && (
                 <ul tabIndex={0} className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box absolute menu">
                     {searchResults.map((result, index) => (
-                        <Link key={result.id} href={`/game/?id=${result.id}`}>
+                        <Link key={result.id} href={`/game/${result.id}`}>
                             <li className="hover:bg-base-300">
                                 {result.name}
                             </li>
