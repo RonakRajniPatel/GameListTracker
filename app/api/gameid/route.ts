@@ -18,8 +18,8 @@ export async function GET(request: Request) {
         },
         body: `fields image_id; where game=${gameid};`
     })
-        .then(response => response.json())
-        .then(response => data = response)
-        .catch(err => console.error(err));
+    .then(response => response.json())
+    .then(response => data = response)
+    .catch(err => console.error(err));
     return NextResponse.json(data)
 }

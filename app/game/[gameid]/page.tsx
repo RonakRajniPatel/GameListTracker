@@ -1,17 +1,14 @@
-import SearchGame from "@/components/SearchGame"
 import ShowGame from "@/components/ShowGame"
-import { NodeNextRequest } from "next/dist/server/base-http/node"
 import React from "react"
 
-type Props = {
-    gameid: string
-}
+export default function Page() {
 
-export default function Page({ gameid }: Props) {
-    console.log(gameid)
+    const { searchParams } = new URL(window.location.href)
+    const search = searchParams.get('search')
+    
     return (
         <>
-            <ShowGame gameid={gameid}/>
+            <ShowGame gameid="00001"/>
         </>
     )
 }

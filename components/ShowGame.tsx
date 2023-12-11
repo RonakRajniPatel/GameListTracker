@@ -1,33 +1,40 @@
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next"
+
+
+const clientId = process.env.IGDB_CLIENT_ID
+const Bearer = process.env.IGDB_BEARER
+
 type Props = {
     gameid: string
 }
 
-type gameHydration = {
-    coverId: string
+type GameData = {
+    coverUrl: string
+}
+
+
+export async function getServerSideProps({ gameid }: Props) {
+    const res = await fetch("https://api.igdb.com/v4/covers", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Client-ID': `${clientId!}`,
+            'Authorization': `Bearer ${Bearer!}`,
+        },
+        body: `fields image_id; where game=${gameid};`
+    })
+    const data : GameData = await res.json()
+    return { props: { data } }
 }
 
 export default async function ShowGame({ gameid }: Props) {
-    let game : gameHydration = { coverId: "co5vmg" }
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/game/[${gameid}]`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        game.coverId = data
-    })
-    .catch(error => {
-        console.error(error)
-    })
-
-    
-    const imageUrl = "https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.coverId + ".jpg"
-    
     return (
         <> 
             <div>
                 <div className="hero relative left-2 top-0 h-16 w-3/4">
                     <div className="hero-content flex-col lg:flex-row">
-                        <img src={imageUrl} className="max-w-sm rounded-lg shadow-2xl" />
+                        <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg" className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
                             <h1 className="text-5xl font-bold py-3">The Legend Of Zelda: Tears of the Kingdom</h1>
                             <p className="px-4 py-.2">Release Date: 2023</p>
