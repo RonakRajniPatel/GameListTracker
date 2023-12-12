@@ -6,12 +6,14 @@ import { useState, useEffect } from 'react'
 type GameData = {
     id: number
     image_id: string
+    name: string
+    rating: number
+    first_release: string
 }
 
 export default function ShowGame() {
-    const [game, setGame] = useState<GameData>({id: 0, image_id: "co5vmg"})
+    const [game, setGame] = useState<GameData>({id: 0, image_id: "co5vmg", name: "Tears of the Test", rating: 95, first_release: "2020-01-01"})
     const params = useParams()
-    console.log("client component")
     const gameId = params?.gameid
 
     useEffect(() => {
@@ -19,10 +21,9 @@ export default function ShowGame() {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gameid?gameid=${gameId}`)
         .then(response => response.json())
         .then(data => {
-            setGame(data[0])
+            setGame(data)
         })
         .catch(err => {
-            console.log("error hit in ShowGame Fetch")
             console.error(err)
         });
     }, [gameId])
@@ -36,11 +37,10 @@ export default function ShowGame() {
                     <div className="hero-content flex-col lg:flex-row">
                         <img src={"https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.image_id + ".jpg"} className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
-                            <h1 className="text-5xl font-bold py-3">The Legend Of Zelda: Tears of the Kingdom</h1>
-                            <p className="px-4 py-.2">Release Date: 2023</p>
-                            <p className="px-4 py-.2">Platforms: Switch</p>
+                            <h1 className="text-5xl font-bold py-3">{game.name}</h1>
+                            <p className="px-4 py-.2">Release Date: {game.first_release.substring(0,10)}</p>
                             <div>
-                                <p className="px-4 py-.2">Rating: 95/100</p>
+                                <p className="px-4 py-.2">Rating: {Math.round(game.rating)}</p>
                             </div>
                         </div>
                     </div>
