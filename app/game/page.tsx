@@ -7,7 +7,7 @@ export default function Page() {
 
     return (
         <>
-            <ShowGame gameid="00001"/>
+            <ShowGame/>
         </>
     )
 }

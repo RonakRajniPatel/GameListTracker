@@ -7,6 +7,8 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     
     const gameid = searchParams.get('gameid')
+    console.log("api route")
+    console.log(gameid)
 
     let data
     await fetch("https://api.igdb.com/v4/covers", {
