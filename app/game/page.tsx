@@ -7,7 +7,9 @@ export default function Page() {
 
     return (
         <>
-            <ShowGame/>
+            <p>
+                Still working on this
+            </p>
         </>
     )
 }

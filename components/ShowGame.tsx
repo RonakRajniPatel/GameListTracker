@@ -12,7 +12,7 @@ type GameData = {
 }
 
 export default function ShowGame() {
-    const [game, setGame] = useState<GameData>({id: 0, image_id: "co5vmg", name: "Tears of the Test", rating: 95, first_release: "2020-01-01"})
+    const [game, setGame] = useState<GameData>({id: 0, image_id: "blank", name: "Loading", rating: 0, first_release: "0000-00-00T00:00:00.000Z"})
     const params = useParams()
     const gameId = params?.gameid
 
@@ -40,7 +40,7 @@ export default function ShowGame() {
                             <h1 className="text-5xl font-bold py-3">{game.name}</h1>
                             <p className="px-4 py-.2">Release Date: {game.first_release.substring(0,10)}</p>
                             <div>
-                                <p className="px-4 py-.2">Rating: {Math.round(game.rating)}</p>
+                                <p className="px-4 py-.2">Rating: {Math.round(game.rating)} / 100</p>
                             </div>
                         </div>
                     </div>
