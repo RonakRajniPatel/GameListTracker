@@ -17,6 +17,7 @@ type Game = {
 export default function SearchGame({ placeholder }: Props) {
     const [searchResults, setSearchResults] = useState<Game[]>([])
     const [showResults, setShowResults] = useState(false)
+    const [searchMore, setSearchMore] = useState("")
 
     
 
@@ -27,6 +28,8 @@ export default function SearchGame({ placeholder }: Props) {
             setShowResults(false)
             return;
         }
+
+        setSearchMore(term)
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/game?search=${term}`)
         .then(response => response.json())
@@ -78,6 +81,11 @@ export default function SearchGame({ placeholder }: Props) {
                             </li>
                         </Link>
                     ))}
+                    <Link href={`/search?query=${searchMore}`}>
+                        <li className="hover:bg-base-300">
+                            More Results
+                        </li>
+                    </Link>
                 </ul>
             )}
 

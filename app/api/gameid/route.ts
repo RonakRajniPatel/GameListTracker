@@ -9,6 +9,7 @@ type GameData = {
     name: string
     rating: number
     first_release: Date
+    summary: string
 }
 
 export async function GET(request: Request) {
@@ -36,7 +37,7 @@ export async function GET(request: Request) {
                 'Client-ID': `${clientId!}`,
                 'Authorization': `Bearer ${Bearer!}`,
             },
-            body: `fields name, total_rating, first_release_date; where id=${gameid};`
+            body: `fields name, total_rating, first_release_date, summary; where id=${gameid};`
         })
         const data2 = await response2.json()
         const date = new Date(data2[0].first_release_date * 1000)
@@ -45,18 +46,20 @@ export async function GET(request: Request) {
             image_id: data1[0].image_id,
             name: data2[0].name,
             rating: data2[0].total_rating,
-            first_release: date
+            first_release: date,
+            summary: data2[0].summary
         }
 
 
     } catch (err) {
         console.error(err)
         game = {
-            id: -1,
-            image_id: "null",
-            name: "null",
-            rating: -1,
-            first_release: new Date('2020-01-01')
+            id: 0,
+            image_id: "",
+            name: "",
+            rating: 0,
+            first_release: new Date('0000-00-00'),
+            summary: ""
         }
     }
     

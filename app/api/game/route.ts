@@ -16,7 +16,7 @@ export async function GET(request: Request) {
             'Client-ID': `${clientId!}`,
             'Authorization': `Bearer ${Bearer!}`,
         },
-        body: `fields name, rating, cover; search \"${search}\"; limit 5;`
+        body: `fields name; search \"${search}\"; limit 5; where category = 0;`
     })
         .then(response => response.json())
         .then(response => data = response)
