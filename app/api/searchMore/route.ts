@@ -54,11 +54,16 @@ export async function GET(request: Request) {
             }
             game.push(currentGame)
         })
-        let index = 0
-        Object.values(coverResponseData).forEach(entry => {
-            game[index].cover = entry.image_id
-            index += 1
-        })
+
+        Object.values(coverResponseData).forEach(coverEntry => {
+            // Find the corresponding game entry
+
+            const matchingGame = game.find(g => parseInt(g.cover) == coverEntry.id);
+            // If found, update its cover property
+            if (matchingGame) {
+                matchingGame.cover = coverEntry.image_id; // This modifies the object in the 'game' array
+            }
+        });
         
         
         
