@@ -34,7 +34,7 @@ export default function ShowGame() {
     return (
         <> 
             <div>
-                <div className="hero relative left-2 top-0 h-16 w-3/4">
+                <div className="hero relative left-2 top-0 h-full w-3/4">
                     <div className="hero-content flex-col lg:flex-row">
                         <img src={"https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.image_id + ".jpg"} className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
