@@ -14,8 +14,7 @@ export default async function NewGame() {
 
         const Headers = headers()
         const path = Headers.get('referer')
-        const gameid = path?.slice(27)
-        
+        const gameid = path?.split("/").pop();
         const cookieStore = cookies()
         const supabase = createClient(cookieStore)
 
