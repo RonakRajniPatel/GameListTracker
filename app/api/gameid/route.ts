@@ -42,12 +42,12 @@ export async function GET(request: Request) {
         const data2 = await response2.json()
         const date = new Date(data2[0].first_release_date * 1000)
         game = {
-            id: data1[0].id,
-            image_id: data1[0].image_id,
-            name: data2[0].name,
-            rating: data2[0].total_rating,
-            first_release: date,
-            summary: data2[0].summary
+            id: data1[0].id ? data1[0].id : "",
+            image_id: data1[0].image_id ? data1[0].image_id : "",
+            name: data2[0].name ? data2[0].name : "",
+            rating: data2[0].total_rating ? data2[0].total_rating : 0,
+            first_release: date ? date : new Date('0000-00-00'),
+            summary: data2[0].summary ? data2[0].summary : "",
         }
 
 
@@ -58,7 +58,7 @@ export async function GET(request: Request) {
             image_id: "",
             name: "",
             rating: 0,
-            first_release: new Date('0000-00-00'),
+            first_release: new Date('2000-01-01'),
             summary: ""
         }
     }

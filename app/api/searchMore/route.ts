@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('query')
 
-    let game: GameData[] = []
+    let games: GameData[] = []
     let gameResponseData
 
     try {
@@ -52,25 +52,23 @@ export async function GET(request: Request) {
                 name: entry.name,
                 cover: entry.cover
             }
-            game.push(currentGame)
+            games.push(currentGame)
         })
 
         Object.values(coverResponseData).forEach(coverEntry => {
             // Find the corresponding game entry
 
-            const matchingGame = game.find(g => parseInt(g.cover) == coverEntry.id);
+            const matchingGame = games.find(g => parseInt(g.cover) == coverEntry.id);
             // If found, update its cover property
             if (matchingGame) {
                 matchingGame.cover = coverEntry.image_id; // This modifies the object in the 'game' array
             }
         });
-        
-        
-        
+
     } catch (err) {
         console.error(err)
 
-        game[0] = {
+        games[0] = {
             id: 0,
             name: "",
             cover: ""
@@ -78,5 +76,5 @@ export async function GET(request: Request) {
         
     }
     
-    return NextResponse.json(game)
+    return NextResponse.json(games)
 }
