@@ -59,7 +59,6 @@ export default async function DisplayGame() {
                                 <td>{game.hours_played}</td>
                                 <td>{game.date_finished}</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">Edit</button>
                                     <DeleteGame game_id={game.game_id}/>
                                 </th>
                             </tr>
