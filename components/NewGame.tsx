@@ -1,7 +1,6 @@
-import { headers } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 
 const clientId = process.env.IGDB_CLIENT_ID
 const Bearer = process.env.IGDB_BEARER

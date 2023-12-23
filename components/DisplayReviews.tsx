@@ -1,6 +1,8 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+'use client'
+
 import DeleteGame from './DeleteGame'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 type GameDetails = {
     user_id: number,
@@ -9,15 +11,26 @@ type GameDetails = {
     cover_id: string,
     status: string,
     review: string,
+    rating: number
     hours_played: number,
     date_finished: string,
 }
 
-export default async function DisplayGame() {
-	const cookieStore = cookies()
-	const supabase = createClient(cookieStore)
-	const { data: {session}} = await supabase.auth.getSession()
-	const { data: game_details} = await supabase.from('game_details').select().eq('user_id', `${session?.user.id}`)
+export default function DisplayReviews({user_id} : {user_id : string}) {
+    const [game_details, setGame_details] = useState<GameDetails[]>()
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?user_id=${user_id}`)
+                const apiResponseData: GameDetails[] = await apiResponse.json()
+                setGame_details(apiResponseData)
+            } catch(err) {
+                console.error(err)
+            }
+        }
+        fetchData()
+    }, [])
 
 	return (
 		<>
@@ -37,12 +50,14 @@ export default async function DisplayGame() {
                     </thead>
                     <tbody>
                         {game_details?.map((game, index) => (
-                            <tr>
+                            <tr key={game.title}>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={"https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.cover_id + ".jpg"} alt="Game Cover" />
+                                                <Link href={`/game/${game.game_id}`}>
+                                                    <img src={"https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.cover_id + ".jpg"} alt="Game Cover" />
+                                                </Link>
                                             </div>
                                         </div>
                                         <div>

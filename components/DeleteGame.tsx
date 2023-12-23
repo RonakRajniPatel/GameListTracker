@@ -4,19 +4,16 @@ import { cookies } from 'next/headers'
 
 
 
-export default async function DeleteGame({game_id} : {game_id : number}) {
+export default function DeleteGame({game_id} : {game_id : number}) {
 
 
 
     const DeleteGame = async () => {
-        'use server'
-        const cookieStore = cookies()
-        
-        const supabase = createClient(cookieStore)
-        const { data: {session}} = await supabase.auth.getSession()
-        await supabase.from('game_details').delete().eq('user_id', `${session?.user.id}`).eq('game_id', `${game_id}`)
-
-        revalidatePath('/game')
+        try {
+            const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/removeGame?game_id=${game_id}`)
+        } catch(err) {
+            console.error(err)
+        }
     }
 
     return (
