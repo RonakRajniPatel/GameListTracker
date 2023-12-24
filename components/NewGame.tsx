@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { cookies, headers } from 'next/headers'
+import AddGameButton from './AddGameButton'
 
 const clientId = process.env.IGDB_CLIENT_ID
 const Bearer = process.env.IGDB_BEARER
@@ -13,8 +14,6 @@ type GameData = {
 
 export default async function NewGame() {
     let game : GameData
-
-
 
     const addGame = async (formData: FormData) => {
         'use server'
@@ -82,8 +81,6 @@ export default async function NewGame() {
     return (
         <>
             <form action={addGame} className="mt-10 justify-evenly">
-
-
                 <select name="status" className="select select-bordered m-2 w-1/2 flex">
                     <option disabled selected>Game Status</option>
                     <option>Want to play</option>
@@ -115,7 +112,7 @@ export default async function NewGame() {
 
                 <textarea className="textarea textarea-bordered w-full m-2" placeholder="Review" name="review"></textarea>
 
-                <button className="btn" type="submit">Add Game</button>
+                <AddGameButton/>
             </form>
         </>
     )
