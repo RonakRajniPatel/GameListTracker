@@ -3,6 +3,7 @@ import { createClient } from '@/utils/supabase/server'
 import { cookies, headers } from 'next/headers'
 import DisplayReviews from "@/components/DisplayReviews"
 
+
 async function getUserID() {
     const cookieStore = cookies()
 	const supabase = createClient(cookieStore)

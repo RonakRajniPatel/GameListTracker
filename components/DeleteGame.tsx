@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 export default function DeleteGame({game_id} : {game_id : number}) {
 
 
@@ -10,6 +11,8 @@ export default function DeleteGame({game_id} : {game_id : number}) {
         } catch(err) {
             console.error(err)
         }
+
+        revalidatePath('/')
     }
 
     return (
