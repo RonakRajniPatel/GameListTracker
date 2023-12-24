@@ -1,16 +1,12 @@
-import { createClient } from '@/utils/supabase/server'
-import { revalidatePath } from 'next/cache'
-import { cookies } from 'next/headers'
-
-
-
 export default function DeleteGame({game_id} : {game_id : number}) {
 
 
 
     const DeleteGame = async () => {
         try {
-            const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/removeGame?game_id=${game_id}`)
+            const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?game_id=${game_id}`, {
+                method: 'DELETE',
+            })
         } catch(err) {
             console.error(err)
         }
