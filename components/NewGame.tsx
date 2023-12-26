@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies, headers } from 'next/headers'
-import AddGameButton from './AddGameButton'
+import AddButton from './AddButton'
 
 const clientId = process.env.IGDB_CLIENT_ID
 const Bearer = process.env.IGDB_BEARER
@@ -106,8 +106,7 @@ export default async function NewGame() {
 
 
                 <textarea className="textarea textarea-bordered w-full m-2" placeholder="Review" name="review"></textarea>
-
-                <AddGameButton/>
+                <AddButton text={"Add Game"} alert={"New game added!"}/>
             </form>
         </>
     )
