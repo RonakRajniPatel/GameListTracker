@@ -20,17 +20,19 @@ export default function DisplayReviews({user_id} : {user_id : string}) {
     const [game_details, setGame_details] = useState<GameDetails[]>()
 
     useEffect(() => {
-        const fetchData = async() => {
-            try {
-                const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?user_id=${user_id}`)
-                const apiResponseData: GameDetails[] = await apiResponse.json()
-                setGame_details(apiResponseData)
-            } catch(err) {
-                console.error(err)
-            }
-        }
-        fetchData()
+        console.log("display reviews user_id")
+        console.log(user_id)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?user_id=${user_id}`)
+        .then(response => response.json())
+        .then(data => {
+            setGame_details(data)
+        })
+        .catch(err => {
+            console.error(err)
+        });
     }, [])
+
+
 
 	return (
 		<>

@@ -32,10 +32,9 @@ export default async function AuthButton() {
     </>
   ) : (
     <li>
-      <Link href="/login">
+      <Link href="/login" className='p-0'>
         Login
       </Link>
     </li>
-    
   )
 }

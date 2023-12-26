@@ -1,24 +1,41 @@
-import React from "react"
-import { createClient } from '@/utils/supabase/server'
-import { cookies, headers } from 'next/headers'
+'use client'
+
+import { useParams } from 'next/navigation'
 import DisplayReviews from "@/components/DisplayReviews"
+import {useState, useEffect} from 'react'
 
-
-async function getUserID() {
-    const cookieStore = cookies()
-	const supabase = createClient(cookieStore)
-	const { data: {session}} = await supabase.auth.getSession()
-
-    const Headers = headers()
-    const path = Headers.get('referer')
-    const userid : any = path?.split("/").pop();
-    return userid
+type users = {
+    user_id: string,
+    name: string, 
+    profile_name: string,
 }
-export default async function Page() {
+export default function Page() {
+    const [user, setUser] = useState<string>("null")
+    const params = useParams()
+    const profile_name = params?.user_id
+    useEffect(() => {
 
-    return (
-        <>  
-            <DisplayReviews user_id={await getUserID()}/>
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profileUser?profile_name=${profile_name}`)
+        .then(response => response.json())
+        .then(data => {
+            setUser(data)
+        })
+        .catch(err => {
+            console.error(err)
+        });
+        console.log("user")
+        console.log(user)
+    }, [user])
+        
+    
+    if (user != "null") return (
+        <>
+            <DisplayReviews user_id={user}/>
         </>
+    )
+    else return (
+        <p>
+            no profile found
+        </p>
     )
 }

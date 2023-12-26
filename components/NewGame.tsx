@@ -1,5 +1,4 @@
 import { createClient } from '@/utils/supabase/server'
-import { revalidatePath } from 'next/cache'
 import { cookies, headers } from 'next/headers'
 import AddGameButton from './AddGameButton'
 
@@ -17,7 +16,6 @@ export default async function NewGame() {
 
     const addGame = async (formData: FormData) => {
         'use server'
-        console.log("add game hit")
         const status = formData.get('status')
         const rating = formData.get('rating')
         const review = formData.get('review')
@@ -32,7 +30,6 @@ export default async function NewGame() {
 
         let game: GameData
         try {
-            console.log("try hit")
             const response1 = await fetch("https://api.igdb.com/v4/covers", {
                 method: 'POST',
                 headers: {
@@ -70,8 +67,6 @@ export default async function NewGame() {
                 name: "",
             }
         }
-        console.log("game")
-        console.log(game)
         const { data: {session}} = await supabase.auth.getSession()
         await supabase.from('game_details').insert([
             { game_id: gameid, user_id: session?.user.id, title: game.name, cover_id: game.image_id, status: status, rating: rating ? rating : 0, review: review ? review : "", hours_played: hours_played ? hours_played : 0, date_finished: date_finished ? date_finished : null}
