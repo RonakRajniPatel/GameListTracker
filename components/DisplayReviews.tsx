@@ -20,8 +20,6 @@ export default function DisplayReviews({user_id} : {user_id : string}) {
     const [game_details, setGame_details] = useState<GameDetails[]>()
 
     useEffect(() => {
-        console.log("display reviews user_id")
-        console.log(user_id)
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews?user_id=${user_id}`)
         .then(response => response.json())
         .then(data => {

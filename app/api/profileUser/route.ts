@@ -18,10 +18,14 @@ export async function GET(request: Request) {
 
     const response = await supabase.from('users').select('user_id').eq('profile_name', profile_name)
     const users = response.data as users[]
-    if (users[0].user_id) {
+    
+    if (response.error) {
+        return NextResponse.json("null")
+    }
+    else if (users[0]) {
         return NextResponse.json(users[0].user_id)
     }
     else {
-        return NextResponse.json(`${session?.user.id}`)
-    }    
+        return NextResponse.json("null")
+    }
 }

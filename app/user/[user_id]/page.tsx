@@ -18,13 +18,12 @@ export default function Page() {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profileUser?profile_name=${profile_name}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             setUser(data)
         })
         .catch(err => {
             console.error(err)
         });
-        console.log("user")
-        console.log(user)
     }, [user])
         
     
